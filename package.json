@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "yumemi-test",
   "private": true,
   "scripts": {
     "dev": "next dev",
