@@ -3,11 +3,7 @@ import Head from 'next/head'
 import styles from 'src/styles/Home.module.css'
 import useSWR from 'swr'
 import axios from 'axios'
-
-interface resType {
-  prefCode: number
-  prefName: string
-}
+import { resType } from 'src/type'
 
 const fetcher = async (url: string): Promise<resType[]> => {
   const res = await axios.get(url, {
