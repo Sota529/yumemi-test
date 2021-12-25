@@ -1,3 +1,16 @@
 {
-  "extends": "next/core-web-vitals"
+  "rules": {
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "comma-dangle": ["error", "never"],
+    "no-trailing-spaces": "error"
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "standard-with-typescript",
+    "prettier"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
 }
