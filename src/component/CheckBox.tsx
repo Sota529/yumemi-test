@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { memo, VFC } from 'react'
 import styles from 'src/styles/CheckBox.module.css'
 
 interface Props {
@@ -7,7 +7,8 @@ interface Props {
   onChange: (e: boolean) => void
 }
 
-export const CheckBox: VFC<Props> = ({ value, isChecked, onChange }) => {
+// eslint-disable-next-line react/display-name
+export const CheckBox: VFC<Props> = memo(({ value, isChecked, onChange }) => {
   return (
     <label id={value}>
       <input
@@ -19,4 +20,4 @@ export const CheckBox: VFC<Props> = ({ value, isChecked, onChange }) => {
       <span className={styles.text}>{value}</span>
     </label>
   )
-}
+})
