@@ -1,37 +1,22 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from 'src/styles/Home.module.css'
-import useSWR from 'swr'
-import axios from 'axios'
 import { PrefectureInputGroup } from 'src/component/PrefectureInputGroup'
-import { resType } from 'src/type'
 import { useEffect, useState } from 'react'
-
-const fetcher = async (url: string): Promise<resType> => {
-  const res = await axios.get(url, {
-    headers: {
-      'X-API-KEY':
-        process.env.NEXT_PUBLIC_X_API_KEY !== undefined
-          ? process.env.NEXT_PUBLIC_X_API_KEY
-          : ''
-    }
-  })
-  const data = (await res.data) as resType
-  return data
-}
+import { useAllPrefecture } from 'src/hooks/getAllPrefecture'
 
 const Home: NextPage = () => {
-  const { data, error } = useSWR(
-    'https://opendata.resas-portal.go.jp/api/v1/prefectures',
-    fetcher
-  )
+  const { data: AllPrefectureData } = useAllPrefecture()
   const [isCheked, setIsCheked] = useState<boolean[]>([])
   useEffect(() => {
-    setIsCheked(data !== undefined ? data?.result.map((d) => false) : [])
-  }, [data])
+    setIsCheked(
+      AllPrefectureData !== undefined
+        ? AllPrefectureData?.result.map((d) => false)
+        : []
+    )
+  }, [AllPrefectureData])
 
-  if (error !== undefined) return <div>failed to load</div>
-  if (data === undefined) return <div>loading...</div>
+  if (AllPrefectureData === undefined) return <div>loading...</div>
   return (
     <div className={styles.container}>
       <Head>
@@ -43,7 +28,7 @@ const Home: NextPage = () => {
       <p className={styles.subTitle}>都道府県</p>
       {isCheked?.length !== 0 ? (
         <PrefectureInputGroup
-          data={data}
+          data={AllPrefectureData}
           isCheked={isCheked}
           setIsCheked={setIsCheked}
         />
