@@ -5,7 +5,7 @@ import useSWR from 'swr'
 import axios from 'axios'
 import { resType } from 'src/type'
 
-const fetcher = async (url: string): Promise<resType[]> => {
+const fetcher = async (url: string): Promise<resType> => {
   const res = await axios.get(url, {
     headers: {
       'X-API-KEY':
@@ -14,7 +14,7 @@ const fetcher = async (url: string): Promise<resType[]> => {
           : ''
     }
   })
-  const data = (await res.data) as resType[]
+  const data = (await res.data) as resType
   return data
 }
 
