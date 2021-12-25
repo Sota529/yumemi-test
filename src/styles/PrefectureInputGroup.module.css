@@ -1,0 +1,9 @@
+.container {
+  margin-top: 8px;
+}
+.checkboxWrapper {
+  display: inline;
+  white-space: nowrap;
+  margin-right: 8px;
+  font-size: 24px;
+}
