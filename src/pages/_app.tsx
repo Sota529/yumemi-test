@@ -1,4 +1,4 @@
-import 'normalize.css'
+import 'destyle.css'
 import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
