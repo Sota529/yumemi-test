@@ -14,7 +14,7 @@ export const CheckBox: VFC<Props> = ({ value, isChecked, onChange }) => {
         id={value}
         type="checkbox"
         checked={isChecked}
-        onChange={(e) => onChange(e.target.value !== undefined)}
+        onChange={() => onChange(!isChecked)}
       />
       <span className={styles.text}>{value}</span>
     </label>
