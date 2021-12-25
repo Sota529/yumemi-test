@@ -2,7 +2,8 @@
   "rules": {
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "comma-dangle": ["error", "never"],
-    "no-trailing-spaces": "error"
+    "no-trailing-spaces": "error",
+    "@typescript-eslint/triple-slash-reference": "off"
   },
   "extends": [
     "next/core-web-vitals",
