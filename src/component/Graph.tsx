@@ -6,7 +6,7 @@ import { AllPrefectureType } from 'src/type'
 interface Props {
   data: Array<{
     prefCode: number
-    data: Array<{ year: number; value: number }>
+    data: Array<{ year: number; value: number }> | undefined
   }>
   prefInfo: AllPrefectureType
 }
@@ -20,7 +20,7 @@ export const Graph: VFC<Props> = memo(({ data, prefInfo }) => {
   const chartPlots = data.map((d) => {
     return {
       name: prefNameList[d.prefCode - 1],
-      data: d.data.map((d) => {
+      data: d.data?.map((d) => {
         return d.value
       })
     }

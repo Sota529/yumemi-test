@@ -10,29 +10,36 @@ import { PrefectureInfoType } from 'src/type'
 
 const getPrefInfo = async (
   id: number
-): Promise<{
-  message: null
-  result: PrefectureInfoType
-}> => {
-  const res = await axios.get(
-    `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=${
-      id + 1
-    }`,
-    {
-      headers: {
-        'X-API-KEY':
-          process.env.NEXT_PUBLIC_X_API_KEY !== undefined
-            ? process.env.NEXT_PUBLIC_X_API_KEY
-            : ''
-      }
+): Promise<
+  | {
+      message: null
+      result: PrefectureInfoType
     }
-  )
-  const data = (await res.data) as {
-    message: null
-    result: PrefectureInfoType
-  }
+  | undefined
+> => {
+  try {
+    const res = await axios.get(
+      `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=${
+        id + 1
+      }`,
+      {
+        headers: {
+          'X-API-KEY':
+            process.env.NEXT_PUBLIC_X_API_KEY !== undefined
+              ? process.env.NEXT_PUBLIC_X_API_KEY
+              : ''
+        }
+      }
+    )
+    const data = (await res.data) as {
+      message: null
+      result: PrefectureInfoType
+    }
 
-  return data
+    return data
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 const Home: NextPage = () => {
@@ -41,10 +48,12 @@ const Home: NextPage = () => {
   const [prefInfos, setPrefInfos] = useState<
     Array<{
       prefCode: number
-      data: Array<{
-        year: number
-        value: number
-      }>
+      data:
+        | Array<{
+            year: number
+            value: number
+          }>
+        | undefined
     }>
   >([])
 
@@ -60,17 +69,19 @@ const Home: NextPage = () => {
     const changeState = async (): Promise<void> => {
       const results: Array<{
         prefCode: number
-        data: Array<{
-          year: number
-          value: number
-        }>
+        data:
+          | Array<{
+              year: number
+              value: number
+            }>
+          | undefined
       }> = []
       for (let i = 0; i < isCheked.length; i++) {
         if (isCheked[i]) {
           const data = await getPrefInfo(i)
           const result = {
             prefCode: i + 1,
-            data: data.result.data[0].data
+            data: data?.result.data[0].data
           }
           results.push(result)
         }
