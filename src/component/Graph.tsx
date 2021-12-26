@@ -26,6 +26,16 @@ export const Graph: VFC<Props> = memo(({ data, prefInfo }) => {
     }
   })
   const options = {
+    xAxis: {
+      title: {
+        text: '年度'
+      }
+    },
+    yAxis: {
+      title: {
+        text: '人口数'
+      }
+    },
     title: {
       text: '都道府県別の総人口推移グラフ'
     },
