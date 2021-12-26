@@ -37,7 +37,6 @@ const getPrefInfo = async (
 
 const Home: NextPage = () => {
   const { data: AllPrefectureData } = useAllPrefecture()
-  // const [prefCodeWithName, setPrefCodeWithName] = useState<{ number: string }>()
   const [isCheked, setIsCheked] = useState<boolean[]>([])
   const [prefInfos, setPrefInfos] = useState<
     Array<{
