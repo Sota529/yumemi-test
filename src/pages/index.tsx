@@ -100,7 +100,9 @@ const Home: NextPage = () => {
           />
         </div>
       ) : null}
-      <Graph data={prefInfos} prefInfo={AllPrefectureData} />
+      <div className={styles.GraphWrapper}>
+        <Graph data={prefInfos} prefInfo={AllPrefectureData} />
+      </div>
     </div>
   )
 }
