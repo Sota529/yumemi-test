@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { memo, VFC } from 'react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { AllPrefectureType } from 'src/type'
@@ -11,7 +11,8 @@ interface Props {
   prefInfo: AllPrefectureType
 }
 
-export const Graph: VFC<Props> = ({ data, prefInfo }) => {
+// eslint-disable-next-line react/display-name
+export const Graph: VFC<Props> = memo(({ data, prefInfo }) => {
   const prefNameList = prefInfo.result.map((d) => {
     return d.prefName
   })
@@ -44,4 +45,4 @@ export const Graph: VFC<Props> = ({ data, prefInfo }) => {
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   )
-}
+})
