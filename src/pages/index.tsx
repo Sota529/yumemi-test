@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styles from 'src/styles/Home.module.css'
 import { PrefectureInputGroup } from 'src/component/PrefectureInputGroup'
 import { useEffect, useState } from 'react'
+import { Graph } from 'src/component/Graph'
 import { useAllPrefecture } from 'src/hooks/getAllPrefecture'
 import axios from 'axios'
 import { PrefectureInfoType } from 'src/type'
@@ -36,6 +37,7 @@ const getPrefInfo = async (
 
 const Home: NextPage = () => {
   const { data: AllPrefectureData } = useAllPrefecture()
+  // const [prefCodeWithName, setPrefCodeWithName] = useState<{ number: string }>()
   const [isCheked, setIsCheked] = useState<boolean[]>([])
   const [prefInfos, setPrefInfos] = useState<
     Array<{
@@ -96,6 +98,7 @@ const Home: NextPage = () => {
           setIsCheked={setIsCheked}
         />
       ) : null}
+      <Graph data={prefInfos} prefInfo={AllPrefectureData} />
     </div>
   )
 }
