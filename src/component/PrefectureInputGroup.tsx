@@ -13,7 +13,7 @@ interface Props {
 export const PrefectureInputGroup: VFC<Props> = memo(
   ({ data, isCheked, setIsCheked }) => {
     return (
-      <div className={styles.container}>
+      <div>
         {data.result.map((d, i) => {
           return (
             <span className={styles.checkboxWrapper} key={d.prefCode}>

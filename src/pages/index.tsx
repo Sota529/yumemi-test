@@ -92,11 +92,13 @@ const Home: NextPage = () => {
       <h1 className={styles.title}>都道府県別の総人口推移グラフ</h1>
       <p className={styles.subTitle}>都道府県</p>
       {isCheked?.length !== 0 ? (
-        <PrefectureInputGroup
-          data={AllPrefectureData}
-          isCheked={isCheked}
-          setIsCheked={setIsCheked}
-        />
+        <div className={styles.PrefectureInputGroupWrapper}>
+          <PrefectureInputGroup
+            data={AllPrefectureData}
+            isCheked={isCheked}
+            setIsCheked={setIsCheked}
+          />
+        </div>
       ) : null}
       <Graph data={prefInfos} prefInfo={AllPrefectureData} />
     </div>
