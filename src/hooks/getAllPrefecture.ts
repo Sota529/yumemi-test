@@ -7,7 +7,9 @@ export const useAllPrefecture = (): { data?: AllPrefectureType } => {
     'https://opendata.resas-portal.go.jp/api/v1/prefectures',
     fetcher
   )
-  alert(error)
+  if (error !== undefined) {
+    console.error(error)
+  }
   return { data: data }
 }
 
