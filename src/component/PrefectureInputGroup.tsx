@@ -1,10 +1,10 @@
 import { Dispatch, memo, SetStateAction, VFC } from 'react'
-import { resType } from 'src/type'
+import { AllPrefectureType } from 'src/type'
 import { CheckBox } from './CheckBox'
 import styles from 'src/styles/PrefectureInputGroup.module.css'
 
 interface Props {
-  data: resType
+  data: AllPrefectureType
   isCheked: boolean[]
   setIsCheked: Dispatch<SetStateAction<boolean[]>>
 }
